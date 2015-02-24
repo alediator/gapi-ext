@@ -57,6 +57,9 @@
      * Default configuration for Google API Ext plugin
      **/
     $.fn.gapiExt.defaults = {
+        // default log level
+        log_level: 'DISABLED',
+        // default gdrive configuration
         gDriveConfig: {
             // see https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiauthauthorize
             //client_id string  The application's client ID. Visit the Google API Console to get an OAuth 2.0 client ID.
