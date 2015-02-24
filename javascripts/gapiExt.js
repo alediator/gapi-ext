@@ -295,18 +295,10 @@
         }
         if(showLog){
             if (this.log_id_to_append) {
-                logContainerEl = $(gapi.log_id_to_append);
-                if($(logContainerEl).val){
-                    // input append
-                    var currentMessage = $(logContainerEl).val();
-                    currentMessage += message;
-                    $(logContainerEl).val(currentMessage);
-                }else{
-                    // div append
-                    var currentMessage = logContainerEl.html();
-                    currentMessage += message;
-                    logContainerEl.html(currentMessage);
-                }
+                logContainerEl = $(this.log_id_to_append);
+                var currentMessage = logContainerEl.html();
+                currentMessage += message;
+                logContainerEl.html(currentMessage);
             } else {
                 if (console && console.log) {
                     console.log(message);
