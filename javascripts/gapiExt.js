@@ -295,6 +295,7 @@
         }
         if(showLog){
             if (this.log_id_to_append) {
+                logContainerEl = $(gapi.log_id_to_append);
                 if($(logContainerEl).val){
                     // input append
                     var currentMessage = $(logContainerEl).val();
@@ -302,7 +303,6 @@
                     $(logContainerEl).val(currentMessage);
                 }else{
                     // div append
-                    logContainerEl = $(gapi.log_id_to_append);
                     var currentMessage = logContainerEl.html();
                     currentMessage += message;
                     logContainerEl.html(currentMessage);
