@@ -299,6 +299,9 @@
                 var currentMessage = logContainerEl.html();
                 currentMessage += message;
                 logContainerEl.html(currentMessage);
+                if(logContainerEl.val){
+                    logContainerEl.val(currentMessage);   
+                }
             } else {
                 if (console && console.log) {
                     console.log(message);
