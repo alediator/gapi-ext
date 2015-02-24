@@ -57,6 +57,9 @@
      * Default configuration for Google API Ext plugin
      **/
     $.fn.gapiExt.defaults = {
+        // default log level
+        log_level: 'DISABLED',
+        // default gdrive configuration
         gDriveConfig: {
             // see https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiauthauthorize
             //client_id string  The application's client ID. Visit the Google API Console to get an OAuth 2.0 client ID.
@@ -82,11 +85,8 @@
         var me = this;
 
         // Default settings
-        var gDriveConfig = this.get;
+        var gDriveConfig = $.extend( {}, me.gDriveConfig, config );
         var returnValue;
-        if(typeof config !== 'undefined'){
-            gDriveConfig = config;
-        }
 
         // authorization callback
         var callback = function(oAut2Token){
@@ -160,34 +160,22 @@
     $.fn.gapiExt.configBuilder = function (key){
         var log_id_to_append = false;
         var log_level = 'TRACE';
-        if(key == 'undefined'){
-
-            this.gDriveConfig =  {
-                // see https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiauthauthorize
-                //client_id	string	The application's client ID. Visit the Google API Console to get an OAuth 2.0 client ID.
-                clientId: '',
-                    // scope	string | array	The auth scope or scopes to authorize as a space-delimited string or array (deprecated). Auth scopes for individual APIs can be found in their documentation.
-                    scopes: 'https://www.googleapis.com/auth/drive',
-                // immediate	boolean	If true, then login uses "immediate mode", which means that the token is refreshed behind the scenes, and no UI is shown to the user.
-                immediate: false,
-                // response_type	string	The OAuth 2.0 response type property. Default: token
-                response_type: 'token'
-
-            }
-        }else{
+        if(key != 'undefined'){
 
             // initialize gapi log
             log_id_to_append = key + '_result_id';
             log_level = $(key + '_log_level').val();
 
             // drive config
-            this.gDriveConfig = {
+            var gDriveConfig = {
                 'clientId': $(key + '_client_id').val(),
                 'scopes': $(key + '_scopes').val(),
                 'immediate': $(key + '_immediate').val(),
                 'redirect_uri': $(key + '_redirect_uri').val() ? $(key + '_redirect_uri').val() : 'postmessage',
                 'response_type': $(key + '_response_type').val() ? $(key + '_response_type').val() : 'token'
             }
+            // overwrite default configuration
+            this.gDriveConfig = $.extend( {}, this.gDriveConfig, gDriveConfig );
         }
 
 
@@ -307,7 +295,7 @@
         }
         if(showLog){
             if (this.log_id_to_append) {
-                logContainerEl = $(gapi.log_id_to_append);
+                logContainerEl = $(this.log_id_to_append);
                 var currentMessage = logContainerEl.html();
                 currentMessage += message;
                 logContainerEl.html(currentMessage);
