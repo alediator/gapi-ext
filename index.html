@@ -66,14 +66,15 @@
           <div class="form-group">
                 <label></label>
             <label for="gapi_ext_log_level">Log level: </label>
-            <select  name="log_level" id='gapi_ext_log_level' value="INFO" class="form-control">
+            <select  name="log_level" id='gapi_ext_log_level' class="form-control">
               <option>DISABLED</option>
-              <option selected="selected">INFO</option>
-              <option>DEBUG</option>
+              <option>INFO</option>
+              <option selected="selected">DEBUG</option>
               <option>TRACE</option>
             </select>
           </div>
           <button type="button" class="btn btn-default" onclick="javascript:$.fn.gapiExt({formKey: '#gapi_ext'}).executeTestBasedOnForm();">Start demo</button>
+          <button type="button" class="btn btn-default" onclick="javascript:$('#gapi_ext_result_id').val('');">Clean log</button>
         </form>
 
         <br />
