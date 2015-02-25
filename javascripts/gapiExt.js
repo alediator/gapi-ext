@@ -239,6 +239,10 @@
             }else{
                 plugin.log('\n[AUTHORIZATION FAIL]\n', 'ERROR');
             }
+            // avoid circular reference for firefox
+            if(authResult['g-oauth-window']){
+                delete authResult['g-oauth-window'];
+            }
             plugin.log('\n\nAuthorization Result:\n' + JSON.stringify(authResult), 'DEBUG');
             var printAboutCallback = function(response){
                 if(response && response.name){
