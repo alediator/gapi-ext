@@ -238,35 +238,21 @@
                 plugin.log('\n', 'INFO');
                 plugin.log('\n', 'INFO');
                 plugin.log('[AUTHORIZATION SUCCESSFUL]', 'INFO');
-                plugin.log('\n', 'INFO');
             }else{
-                plugin.log('\n', 'ERROR');
-                plugin.log('\n', 'ERROR');
                 plugin.log('[AUTHORIZATION FAIL]', 'ERROR');
-                plugin.log('\n', 'ERROR');
             }
             // avoid circular reference for firefox
             if(authResult['g-oauth-window']){
                 delete authResult['g-oauth-window'];
             }
-            plugin.log('\n\nAuthorization Result:\n' + JSON.stringify(authResult), 'DEBUG');
+            plugin.log('Authorization Result:' + JSON.stringify(authResult), 'DEBUG');
             var printAboutCallback = function(response){
                 if(response && response.name){
-                    plugin.log('\n', 'INFO');
-                    plugin.log('\n', 'INFO');
                     plugin.log('[ABOUT SUCCESSFUL] User: ' + response.name, 'INFO');
-                    plugin.log('\n', 'INFO');
                 }else{
-                    plugin.log('\n', 'ERROR');
-                    plugin.log('\n', 'ERROR');
                     plugin.log('[ABOUT FAILED]', 'ERROR');
-                    plugin.log('\n', 'ERROR');
                 }
-                plugin.log('\n', 'DEBUG');
-                plugin.log('\n', 'DEBUG');
-                plugin.log('\n', 'DEBUG');
-                plugin.log('About Result:' + JSON.stringify(response), 'DEBUG');
-                plugin.log('\n', 'DEBUG');
+                plugin.log('About Result: ' + JSON.stringify(response), 'DEBUG');
             };
             plugin.printAbout(printAboutCallback);
         }, plugin.gDriveConfig);
