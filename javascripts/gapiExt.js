@@ -235,9 +235,15 @@
                 logContainerEl = $(logContainer);
             }
             if(authResult && !authResult.error){
-                plugin.log('\n\n[AUTHORIZATION SUCCESSFUL]\n', 'INFO');
+                plugin.log('\n', 'INFO');
+                plugin.log('\n', 'INFO');
+                plugin.log('[AUTHORIZATION SUCCESSFUL]', 'INFO');
+                plugin.log('\n', 'INFO');
             }else{
-                plugin.log('\n\n[AUTHORIZATION FAIL]\n', 'ERROR');
+                plugin.log('\n', 'ERROR');
+                plugin.log('\n', 'ERROR');
+                plugin.log('[AUTHORIZATION FAIL]', 'ERROR');
+                plugin.log('\n', 'ERROR');
             }
             // avoid circular reference for firefox
             if(authResult['g-oauth-window']){
@@ -246,11 +252,21 @@
             plugin.log('\n\nAuthorization Result:\n' + JSON.stringify(authResult), 'DEBUG');
             var printAboutCallback = function(response){
                 if(response && response.name){
-                    plugin.log('\n\n[ABOUT SUCCESSFUL] User: ' + response.name + '\n', 'INFO');
+                    plugin.log('\n', 'INFO');
+                    plugin.log('\n', 'INFO');
+                    plugin.log('[ABOUT SUCCESSFUL] User: ' + response.name, 'INFO');
+                    plugin.log('\n', 'INFO');
                 }else{
-                    plugin.log('\n\n[ABOUT FAILED]\n', 'ERROR');
+                    plugin.log('\n', 'ERROR');
+                    plugin.log('\n', 'ERROR');
+                    plugin.log('[ABOUT FAILED]', 'ERROR');
+                    plugin.log('\n', 'ERROR');
                 }
-                plugin.log('\n\n\n' + 'About Result: \n' + JSON.stringify(response), 'DEBUG');
+                plugin.log('\n', 'DEBUG');
+                plugin.log('\n', 'DEBUG');
+                plugin.log('\n', 'DEBUG');
+                plugin.log('About Result:' + JSON.stringify(response), 'DEBUG');
+                plugin.log('\n', 'DEBUG');
             };
             plugin.printAbout(printAboutCallback);
         }, plugin.gDriveConfig);
@@ -301,7 +317,11 @@
             if (this.log_id_to_append) {
                 logContainerEl = $(this.log_id_to_append);
                 var currentMessage = logContainerEl.html();
-                currentMessage += '[' + level + ']' + message;
+                if(message == '\n'){
+                    currentMessage += message;
+                }else{
+                    currentMessage += '[' + level + ']' + message;
+                }
                 logContainerEl.html(currentMessage);
             } else {
                 if (console && console.log) {
