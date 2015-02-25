@@ -236,7 +236,6 @@
             }
             if(authResult && !authResult.error){
                 plugin.log('\n', 'INFO');
-                plugin.log('\n', 'INFO');
                 plugin.log('[AUTHORIZATION SUCCESSFUL]', 'INFO');
             }else{
                 plugin.log('[AUTHORIZATION FAIL]', 'ERROR');
@@ -306,7 +305,7 @@
                 if(message == '\n'){
                     currentMessage += message;
                 }else{
-                    currentMessage += '[' + level + '] ' + message;
+                    currentMessage += '\n[' + level + '] ' + message;
                 }
                 logContainerEl.html(currentMessage);
             } else {
