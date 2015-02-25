@@ -235,9 +235,9 @@
                 logContainerEl = $(logContainer);
             }
             if(authResult && !authResult.error){
-                plugin.log('\n[AUTHORIZATION SUCCESSFUL]\n', 'INFO');
+                plugin.log('\n\n[AUTHORIZATION SUCCESSFUL]\n', 'INFO');
             }else{
-                plugin.log('\n[AUTHORIZATION FAIL]\n', 'ERROR');
+                plugin.log('\n\n[AUTHORIZATION FAIL]\n', 'ERROR');
             }
             // avoid circular reference for firefox
             if(authResult['g-oauth-window']){
@@ -246,9 +246,9 @@
             plugin.log('\n\nAuthorization Result:\n' + JSON.stringify(authResult), 'DEBUG');
             var printAboutCallback = function(response){
                 if(response && response.name){
-                    plugin.log('\n[ABOUT SUCCESSFUL] User: ' + response.name + '\n', 'INFO');
+                    plugin.log('\n\n[ABOUT SUCCESSFUL] User: ' + response.name + '\n', 'INFO');
                 }else{
-                    plugin.log('\n[ABOUT FAILED]\n', 'ERROR');
+                    plugin.log('\n\n[ABOUT FAILED]\n', 'ERROR');
                 }
                 plugin.log('\n\n\n' + 'About Result: \n' + JSON.stringify(response), 'DEBUG');
             };
@@ -301,7 +301,7 @@
             if (this.log_id_to_append) {
                 logContainerEl = $(this.log_id_to_append);
                 var currentMessage = logContainerEl.html();
-                currentMessage += message;
+                currentMessage += '[' + level + ']' + message;
                 logContainerEl.html(currentMessage);
             } else {
                 if (console && console.log) {
