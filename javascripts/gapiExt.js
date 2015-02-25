@@ -320,7 +320,7 @@
                 if(message == '\n'){
                     currentMessage += message;
                 }else{
-                    currentMessage += '[' + level + ']' + message;
+                    currentMessage += '[' + level + '] ' + message;
                 }
                 logContainerEl.html(currentMessage);
             } else {
